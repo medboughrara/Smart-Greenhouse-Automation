@@ -1,0 +1,157 @@
+Here is a complete and professional `README.md` file for your smart greenhouse ML model project, including SHAP explainability, ONNX export, and real-time prediction integration.
+
+---
+
+### 📄 `README.md`
+
+````markdown
+# 🌿 Smart Greenhouse Actuator Prediction System
+
+This project uses machine learning to predict actuator states (`Fan_actuator_ON`, `Watering_plant_pump_ON`) in a smart greenhouse based on real-time environmental data such as temperature, humidity, water level, and soil nutrients (N, P, K).
+
+---
+
+## 📌 Project Overview
+
+- 📈 Predicts when to **turn ON the fan or watering system**
+- 🤖 Trained on a real-world dataset collected from a smart greenhouse in Iraq (2023–2024)
+- 🔍 Supports **SHAP** explainability
+- 📦 Deployable on edge devices (Raspberry Pi, Jetson Nano) via **ONNX**
+- 🌐 Includes **real-time prediction loop** for live sensor integration
+
+---
+
+## 📁 Dataset Description
+
+| Feature                   | Description                          |
+|---------------------------|--------------------------------------|
+| temperature               | Ambient temperature (°C)             |
+| humidity                  | Humidity (%)                         |
+| water_level               | Water reservoir level (%)            |
+| N, P, K                   | Soil nutrients (0–255 scale)         |
+| Fan_actuator_ON           | Label: 1 if fan should be ON         |
+| Watering_plant_pump_ON    | Label: 1 if watering should be ON    |
+
+> The dataset was cleaned, duplicates and nulls removed, and categorical data encoded.
+
+---
+
+## 🧠 Models Used
+
+| Model              | Use Case                       | Notes                              |
+|--------------------|--------------------------------|-------------------------------------|
+| Random Forest       | Baseline model                 | Fast, interpretable                 |
+| XGBoost             | Optimized performance model    | Handles imbalanced data well        |
+
+---
+
+## 🚀 Getting Started
+
+### 📦 Install Requirements
+
+```bash
+pip install pandas scikit-learn xgboost joblib shap matplotlib skl2onnx
+````
+
+### 🧪 Train Models
+
+```python
+# train_models.py
+# Trains RandomForest and XGBoost + saves them
+python train_models.py
+```
+
+### 📊 SHAP Explainability
+
+```python
+# shap_explain.py
+# Visualizes feature importance for Fan_actuator_ON
+python shap_explain.py
+```
+
+### 📤 Export to ONNX
+
+```python
+# export_onnx.py
+# Exports RandomForest model to ONNX for deployment
+python export_onnx.py
+```
+
+### 🔁 Real-Time Prediction Script
+
+```python
+# real_time_predict.py
+# Simulates live predictions (replace with sensor input)
+python real_time_predict.py
+```
+
+---
+
+## 🔍 SHAP Example
+
+```python
+import shap
+explainer = shap.Explainer(xgb_model.estimators_[0])
+shap_values = explainer(X_test)
+shap.summary_plot(shap_values, X_test)
+```
+
+---
+
+## 💾 Deployment
+
+* ✅ Save as `.pkl` for local use
+* ✅ Export to `.onnx` for edge devices
+* 🧠 Optional: Convert neural models to TensorFlow Lite for microcontrollers
+
+---
+
+## 🧪 Real-Time Integration
+
+Replace simulated sensor input with live data:
+
+* 🔌 Via **Serial** from Arduino
+* 📶 Via **MQTT** from ESP32
+* 🧰 Via **GPIO** on Raspberry Pi
+
+```python
+sensor_data = {
+    'temperature': 31,
+    'humidity': 70,
+    'water_level': 90,
+    'N': 120,
+    'P': 80,
+    'K': 100
+}
+```
+
+Then pass this to the model for real-time prediction and control.
+
+---
+
+## 🧾 Attribution
+
+Data from the master's thesis by **Mohammed Ismail Lifta (2023–2024)**
+Supervised by **Asst. Prof. Wissam Dawood Abdullah**
+📍 Department of Computer Science, Tikrit University, Iraq
+📑 License: [CC BY-ND](https://creativecommons.org/licenses/by-nd/4.0/)
+
+---
+
+## 📬 Future Work
+
+* ✅ Add dashboard (Streamlit / Dash)
+* 📡 Connect to cloud (Firebase, AWS IoT)
+* 🌱 Integrate with irrigation controllers
+* 📊 Add historical trend analytics
+
+---
+
+## 🤖 Maintainer
+
+**Mouhamed Boughrara**
+🔧 Electronics & AI Systems Developer
+🌍 Tunisia | 💡 Open to collaborations
+
+```
+
